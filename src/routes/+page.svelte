@@ -4,9 +4,13 @@
 	let div: HTMLDivElement;
 
 	onMount(async () => {
+		// @ts-ignore
 		const EditorJS = await import('@editorjs/editorjs');
+		const {EDITOR_TOOLS} = await import("./EditorTools");
+
 		const editor = new EditorJS.default({
-			holder: div
+			holder: div,
+			tools: EDITOR_TOOLS,
 		});
 	});
 </script>
