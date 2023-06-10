@@ -1,18 +1,20 @@
-<script lang="ts">
-	import { onMount } from 'svelte';
+<script>
+    import {onMount} from 'svelte';
 
-	let div: HTMLDivElement;
+    let div;
 
-	onMount(async () => {
-		// @ts-ignore
-		const EditorJS = await import('@editorjs/editorjs');
-		const {EDITOR_TOOLS} = await import("./EditorTools");
-
-		const editor = new EditorJS.default({
-			holder: div,
-			tools: EDITOR_TOOLS,
-		});
-	});
+    onMount(async () => {
+        const EditorJS = await import('@editorjs/editorjs');
+        const Header = await import('@editorjs/header');
+        const List = await import('@editorjs/list');
+        const editor = new EditorJS.default({
+            holder: div,
+            tools: {
+                header: Header.default,
+                list: List.default
+            }
+        });
+    });
 </script>
 
 <h1>Welcome to SvelteKit</h1>
